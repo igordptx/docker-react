@@ -1,0 +1,19 @@
+version: '3' #  version
+services:   # type of container
+    web:  # name specifier
+        build:    # buile from docker.dev
+            context: .    # use current dir
+            dockerfile: dockerfile.dev  # file to use from
+        ports:   # port mapping
+            - "3000:3000"
+        volumes:   # reference files
+            - /app/node_modules
+            - .:/app
+    tests:  # test app
+        build:    # buile from docker.dev
+            context: .    # use current dir
+            dockerfile: dockerfile.dev  # file to use from
+        volumes:   # reference files
+            - /app/node_modules
+            - .:/app
+        command: ["npm","run","test"]
