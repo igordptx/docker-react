@@ -1,0 +1,8 @@
+sudo: required
+services:
+    - docker
+before_install:
+    - docker build -t igordptx/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true igordptx/docker-react npm run test -- --coverage
